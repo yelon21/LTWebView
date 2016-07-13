@@ -12,6 +12,7 @@
 		59EB19E34CFFE0878AE41CDBB784F539 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		5DF9F30F3BA51F6DFE328D6A1AF36C33 /* Pods-LTWebView_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DABDDA18050628FBE5D71A7DB693EAD8 /* Pods-LTWebView_Tests-dummy.m */; };
 		61A8ECDFCBD8FBEB13601B0661660EA0 /* LTWebView-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A0F094DE314CC6A3B13F7DA312852E81 /* LTWebView-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		635BEB241D366E6C00E81E71 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 635BEB231D366E6C00E81E71 /* WebKit.framework */; };
 		683535D329830B95D7D1910CBB115517 /* LTWebView-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 898EDE705C3E22E18485E3097862ADC7 /* LTWebView-dummy.m */; };
 		68B6EF4DC42E6B8F49D2A484F222FD89 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */; };
 		7B34F589B9BF1961C5CF0900C098AAB3 /* LTWebView.h in Headers */ = {isa = PBXBuildFile; fileRef = 90EAFA171F8A27F21ED661964A87FA36 /* LTWebView.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -58,6 +59,7 @@
 		3ACA7FA80AF059905D93B0D10A48E6CE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3ED8A5B2F729F6880BC4AF38B60E10BB /* Pods-LTWebView_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LTWebView_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		4F94BE2BE43C4BA6E8279653C51DFCDC /* ResourceBundle-LTWebView-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "ResourceBundle-LTWebView-Info.plist"; sourceTree = "<group>"; };
+		635BEB231D366E6C00E81E71 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
 		7164A54A74A0DC47F58737E4C7DEA3F8 /* Pods-LTWebView_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-LTWebView_Example.modulemap"; sourceTree = "<group>"; };
 		754AF05B441FBD5B57B1278656F450EF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		76FAA6D04FD2AEF28981C141F23E5C52 /* LTWebViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LTWebViewController.m; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				635BEB241D366E6C00E81E71 /* WebKit.framework in Frameworks */,
 				68B6EF4DC42E6B8F49D2A484F222FD89 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -251,6 +254,7 @@
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				635BEB231D366E6C00E81E71 /* WebKit.framework */,
 				3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */,
 			);
 			name = Frameworks;
@@ -604,14 +608,14 @@
 				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/LTWebView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/LTWebView/LTWebView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = LTWebView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -666,14 +670,14 @@
 				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/LTWebView/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/LTWebView/LTWebView.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = LTWebView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};

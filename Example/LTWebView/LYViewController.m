@@ -7,7 +7,7 @@
 //
 
 #import "LYViewController.h"
-
+#import <LTWebView/LTWebViewController.h>
 @interface LYViewController ()
 
 @end
@@ -17,7 +17,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    self.view.backgroundColor = [UIColor whiteColor];
+}
+
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    LTWebViewController *viewCon = [[LTWebViewController alloc]init];
+    [viewCon lt_loadUrl:@"http://www.baidu.com"];
+
+    [self.navigationController pushViewController:viewCon animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

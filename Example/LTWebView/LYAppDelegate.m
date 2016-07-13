@@ -7,12 +7,25 @@
 //
 
 #import "LYAppDelegate.h"
+#import "LYViewController.h"
 
 @implementation LYAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    
+    LYViewController *viewCon = [[LYViewController alloc]init];
+    
+    UINavigationController *rootNav = [[UINavigationController alloc]initWithRootViewController:viewCon];
+    rootNav.navigationBar.barTintColor = [UIColor colorWithWhite:0.0 alpha:0.8];
+    [rootNav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [UIColor whiteColor], NSForegroundColorAttributeName,
+                                                          nil]];
+    
+    self.window.rootViewController = rootNav;
+    [self.window makeKeyAndVisible];
+
     return YES;
 }
 

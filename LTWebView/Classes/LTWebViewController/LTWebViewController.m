@@ -54,7 +54,7 @@
     
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     
-    [btn setImage:[UIImage imageNamed:@"back"]
+    [btn setImage:[UIImage imageNamed:@"Frameworks/LTWebView.framework/LTWebView.bundle/back"]
          forState:UIControlStateNormal];
     
     [btn addTarget:self
