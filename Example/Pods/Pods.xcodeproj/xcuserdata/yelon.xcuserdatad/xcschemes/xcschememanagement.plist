@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>LTWebView-LTWebView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>LTWebView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LTWebView_Example.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-LTWebView_Tests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>43CCA72193265F6A612718B110C33F02</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EF70CFC8CB1D392E0F1360745F24038</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>65ECF836FE7C64D6DE09704D5181A6CB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>B03B4A872AEA0AB756AE2D4E9BDBA5E6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

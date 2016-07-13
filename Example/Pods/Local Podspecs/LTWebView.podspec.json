@@ -1,0 +1,28 @@
+{
+  "name": "LTWebView",
+  "version": "0.1.0",
+  "summary": "A short description of LTWebView.",
+  "description": "个人web工具",
+  "homepage": "https://github.com/yelon21/LTWebView",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "yelon21": "254956982@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/yelon21/LTWebView.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "6.0"
+  },
+  "source_files": "LTWebView/Classes/**/*",
+  "resource_bundles": {
+    "LTWebView": [
+      "LTWebView/Assets/*.png"
+    ]
+  },
+  "public_header_files": "Pod/Classes/**/*.h"
+}
