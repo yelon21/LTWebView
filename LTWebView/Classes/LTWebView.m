@@ -14,51 +14,41 @@
 @property(nonatomic,strong) WKWebView *webViewWK;
 @property(nonatomic,readwrite,strong,nullable) NSString *title;
 
-@property(nonatomic,strong) UIScrollView *rootScrollView;
-@property(nonatomic,assign) BOOL preLoad;
 @end
 
 @implementation LTWebView
 
--(instancetype)init{
-    
-    if (self = [self initWithFrame:CGRectZero]) {
-        
-    }
-    return self;
-}
 -(instancetype)initWithFrame:(CGRect)frame {
 
-    return [self initWithFrame:frame preLoad:NO];
-}
-
--(instancetype)initWithFrame:(CGRect)frame preLoad:(BOOL)preLoad{
-    
     if (self = [super initWithFrame:frame]) {
         
-        self.preLoad = preLoad;
-        
-        if (self.preLoad) {
-            
-            self.rootScrollView = [[UIScrollView alloc]initWithFrame:self.bounds];
-            [self addSubview:self.rootScrollView];
-            [self.rootScrollView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
-        }
-        
-        self.title = @"";
-        Class wkClass = NSClassFromString(@"WKWebView");
-        if (wkClass) {
-            _isWKWebView = YES;
-            [self initWKWebView];
-        }
-        else{
-            
-            _isWKWebView = NO;
-            [self initUIWebView];
-        }
+        [self setup];
     }
     return self;
 }
+
+-(void)awakeFromNib{
+
+    [super awakeFromNib];
+    
+    [self setup];
+}
+
+- (void)setup{
+    
+    self.title = @"";
+    Class wkClass = NSClassFromString(@"WKWebView");
+    if (wkClass) {
+        _isWKWebView = YES;
+        [self initWKWebView];
+    }
+    else{
+        
+        _isWKWebView = NO;
+        [self initUIWebView];
+    }
+}
+
 -(void)setBackgroundColor:(UIColor *)backgroundColor{
     
     [super setBackgroundColor:backgroundColor];
@@ -87,9 +77,7 @@
     self.webViewWK.navigationDelegate = self;
     
     UIView *superView = self;
-    if (self.rootScrollView) {
-        superView = self.rootScrollView;
-    }
+
     [superView addSubview:self.webViewWK];
     self.webViewWK.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     self.webViewWK.scrollView.bounces = YES;
@@ -100,9 +88,7 @@
     self.webViewUI = [[UIWebView alloc]initWithFrame:self.bounds];
     self.webViewUI.delegate = self;
     UIView *superView = self;
-    if (self.rootScrollView) {
-        superView = self.rootScrollView;
-    }
+
     [superView addSubview:self.webViewUI];
     self.webViewUI.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
     self.webViewUI.scrollView.bounces = YES;
@@ -305,21 +291,6 @@
     if ([self.delegate respondsToSelector:@selector(ltwebViewDidFinishLoad:)]) {
         
         [self.delegate ltwebViewDidFinishLoad:self];
-    }
-    
-    if (self.rootScrollView&&self.preLoad) {
-        
-        __weak typeof(self)weakSelf = self;
-        [self lt_evaluateJavaScript:@"document.body.scrollHeight" completionHandler:^(id  _Nullable response, NSError * _Nullable error) {
-            
-            double width = CGRectGetWidth(weakSelf.rootScrollView.bounds);
-            
-            double height = [response doubleValue];
-            
-            [weakSelf.rootScrollView setContentSize:CGSizeMake(width, height)];
-            CGRect rect = CGRectMake(0.0, 0.0, width, height);
-            weakSelf.webView.frame = rect;
-        }];
     }
 }
 
