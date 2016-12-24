@@ -108,11 +108,39 @@
 //加载
 - (void)lt_loadUrl:(NSString *)urlString{
     
-    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
+    if (urlString == nil) {
+        
+        urlString = @"";
+    }
+    else if ([urlString isKindOfClass:[NSString class]]) {
+        
+        urlString = [NSString stringWithFormat:@"%@",urlString];
+        
+    }else if([urlString isKindOfClass:[NSNumber class]]){
+        
+        urlString = [NSString stringWithFormat:@"%@",urlString];
+    }
+    else{
+    
+        urlString = @"";
+    }
+    
+    if ([urlString respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
+        
+        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    }
+    else{
+        
+        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+    NSURL *url = [NSURL URLWithString:urlString];
     if (!url) {
         
+        NSLog(@"urlString异常=%@",urlString);
         return;
     }
+
     NSURLRequest *request = [[NSURLRequest alloc]initWithURL:url];
     
     [self lt_loadRequest:request];
