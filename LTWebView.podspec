@@ -30,8 +30,9 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
 
-  s.source_files = 'LTWebView/Classes/**/*'
-  
+  s.source_files = 'LTWebView/Classes/**/*.{h,m}'
+  s.private_header_files = 'LTWebView/Classes/LTUIWebView/LTUIWebView.h'
+
   s.resource_bundles = {
     'LTWebView' => ['LTWebView/Assets/*.png']
   }

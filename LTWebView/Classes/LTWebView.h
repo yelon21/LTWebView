@@ -9,6 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+#ifdef DEBUG
+#define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define NSLog(fmt, ...) nil
+#endif
+
 @protocol LTWebViewDelegate;
 
 @interface LTWebView : UIView<UIWebViewDelegate,WKNavigationDelegate,WKUIDelegate>
@@ -20,6 +26,7 @@
 
 @property (nullable, nonatomic, readonly, assign) NSURL *URL;
 @property (nonnull, nonatomic, readonly, assign) UIScrollView *scrollView;
+@property (nonatomic, readonly) double estimatedProgress;
 
 - (void)lt_loadUrl:(nonnull NSString *)urlString;
 - (void)lt_loadRequest:(nonnull NSURLRequest *)request;
@@ -54,5 +61,7 @@
 - (void)ltwebViewDidStartLoad:(nonnull LTWebView *)webView;
 - (void)ltwebViewDidFinishLoad:(nonnull LTWebView *)webView;
 - (void)ltwebView:(nonnull LTWebView *)webView didFailLoadWithError:(nullable NSError *)error;
+
+- (void)ltwebView:(nonnull LTWebView *)webView loadingProgress:(double)progress;
 
 @end

@@ -10,6 +10,8 @@
 
 @interface LTWebViewController ()
 
+@property(nonatomic,strong) UIProgressView *progressView;
+
 @end
 
 @implementation LTWebViewController
@@ -35,6 +37,25 @@
 
     UIView *superView = self.view;
     [superView addSubview:self.webView];
+}
+
+-(UIProgressView *)progressView{
+
+    if (!_progressView) {
+        
+        CGFloat orgY = 0.0;
+        CGFloat height = 3.0;
+        
+        if (self.navigationController.navigationBar) {
+            
+            orgY = CGRectGetHeight(self.navigationController.navigationBar.bounds);
+        }
+        
+        _progressView = [[UIProgressView alloc]initWithFrame:CGRectMake(0.0, orgY, CGRectGetWidth(self.view.bounds), height)];
+        _progressView.trackTintColor = [UIColor clearColor];
+        _progressView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    }
+    return _progressView;
 }
 
 -(LTWebView *)webView{
@@ -158,7 +179,7 @@
     
     NSURL *url = [request URL];
     NSString *absoluteString = [url absoluteString];
-    NSLog(@"absoluteString == %@",absoluteString);
+    //NSLog(@"absoluteString == %@",absoluteString);
     if ([absoluteString hasPrefix:@"http://itunes.apple.com"]) {
         
         [[UIApplication sharedApplication]openURL:url];
@@ -172,6 +193,29 @@
     [self setNetworkActivityIndicatorVisible:NO];
     [self updateBarItems];
     NSLog(@"error==%@",error);
+}
+
+-(void)ltwebView:(LTWebView *)webView loadingProgress:(double)progress{
+
+    NSLog(@"============progress=%@",@(progress));
+    
+    if (!_progressView) {
+        
+        if (self.navigationController.navigationBar) {
+            
+            [self.navigationController.navigationBar addSubview:self.progressView];
+        }
+        else{
+            
+            [self.view addSubview:self.progressView];
+        }
+    }
+    [self.progressView setProgress:progress animated:YES];
+    
+    if (progress>=1.0) {
+        
+        [self.progressView setProgress:0 animated:NO];
+    }
 }
 
 @end

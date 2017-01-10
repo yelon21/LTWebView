@@ -7,13 +7,17 @@
 //
 
 #import "LTWebView.h"
+#import "LTUIWebView.h"
 
-@interface LTWebView ()
+@interface LTWebView ()<LTUIWebViewDelegate>{
 
-@property(nonatomic,strong) UIWebView *webViewUI;
+    NSInteger loadingCount;
+}
+
+@property(nonatomic,strong) LTUIWebView *webViewUI;
 @property(nonatomic,strong) WKWebView *webViewWK;
 @property(nonatomic,readwrite,strong,nullable) NSString *title;
-
+@property(nonatomic,readwrite) double estimatedProgress;
 @end
 
 @implementation LTWebView
@@ -37,7 +41,11 @@
 - (void)setup{
     
     self.title = @"";
-    Class wkClass = NSClassFromString(@"WKWebView");
+    
+    loadingCount = 0;
+    _estimatedProgress = 0.0;
+    
+    Class wkClass = nil;//NSClassFromString(@"WKWebView");
     if (wkClass) {
         _isWKWebView = YES;
         [self initWKWebView];
@@ -46,6 +54,31 @@
         
         _isWKWebView = NO;
         [self initUIWebView];
+    }
+    
+    if (_isWKWebView) {
+        
+        [self.webViewWK addObserver:self
+                         forKeyPath:@"estimatedProgress"
+                            options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial
+                            context:(__bridge void * _Nullable)(self.delegate)];
+    }
+}
+
+-(void)dealloc{
+
+    [self.webViewWK removeObserver:self forKeyPath:@"estimatedProgress"];
+}
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary<NSKeyValueChangeKey,id> *)change
+                      context:(void *)context{
+    
+    if ([keyPath isEqualToString:@"estimatedProgress"]) {
+        
+        double progress = [change[@"new"] doubleValue];
+        [self lt_webView:self.webView loadingProgress:progress];
     }
 }
 
@@ -64,7 +97,6 @@
 }
 //初始化
 - (void)initWKWebView{
-    
     
     WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc]init];
     
@@ -85,8 +117,9 @@
 
 - (void)initUIWebView{
     
-    self.webViewUI = [[UIWebView alloc]initWithFrame:self.bounds];
+    self.webViewUI = [[LTUIWebView alloc]initWithFrame:self.bounds];
     self.webViewUI.delegate = self;
+    self.webViewUI.ltDelegate = self;
     UIView *superView = self;
 
     [superView addSubview:self.webViewUI];
@@ -305,9 +338,16 @@
         }
     }
 }
+#pragma mark LTUIWebViewDelegate
+-(void)webView:(LTUIWebView *)webView didChangedProgress:(CGFloat)progress{
+
+    [self lt_webView:webView
+     loadingProgress:progress];
+}
 #pragma mark LTWebViewDelegate
 - (void)lt_webViewDidStartLoad:(UIView *)webView {
     
+    NSLog(@"lt_webViewDidStartLoad");
     if ([self.delegate respondsToSelector:@selector(ltwebViewDidStartLoad:)]) {
         
         [self.delegate ltwebViewDidStartLoad:self];
@@ -315,7 +355,7 @@
 }
 
 - (void)lt_webViewDidFinishLoad:(UIView *)webView {
-    
+    NSLog(@"lt_webViewDidFinishLoad");
     if ([self.delegate respondsToSelector:@selector(ltwebViewDidFinishLoad:)]) {
         
         [self.delegate ltwebViewDidFinishLoad:self];
@@ -323,7 +363,7 @@
 }
 
 - (BOOL)lt_webView:(UIView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
+    NSLog(@"shouldStartLoadWithRequest");
     if ([self.delegate respondsToSelector:@selector(ltwebView:shouldStartLoadWithRequest:navigationType:)]) {
         
         return [self.delegate ltwebView:self
@@ -334,21 +374,104 @@
 }
 
 - (void)lt_webView:(UIView *)webView didFailLoadWithError:(nullable NSError *)error{
-    
+    NSLog(@"didFailLoadWithError");
     if ([self.delegate respondsToSelector:@selector(ltwebView:didFailLoadWithError:)]) {
         
         [self.delegate ltwebView:self didFailLoadWithError:error];
     }
 }
+
+- (void)lt_webView:(nonnull LTWebView *)webView loadingProgress:(double)progress{
+    
+    if (self.estimatedProgress >= progress) {
+        return;
+    }
+    self.estimatedProgress = progress;
+    
+    
+    //NSLog(@"progress=%@",@(progress));
+    
+    if ([self.delegate respondsToSelector:@selector(ltwebView:loadingProgress:)]) {
+        
+        [self.delegate ltwebView:webView loadingProgress:progress];
+    }
+    
+    if (self.estimatedProgress >= 1.0) {
+        
+        self.estimatedProgress = 0.0;
+    }
+}
+#pragma mark UIWebView document.readyState
+- (void)startLoading{
+
+    [self lt_webView:self loadingProgress:0.1];
+   // [self checkDocumentReadyState];
+}
+
+- (void)endLoading{
+    
+    [self lt_webView:self loadingProgress:1.0];
+}
+
+- (void)checkDocumentReadyState{
+
+    NSString *readyState = [self.webViewUI stringByEvaluatingJavaScriptFromString:@"document.readyState"];
+    
+    NSLog(@"---------readyState=%@",readyState);
+    
+    if ([readyState isEqualToString:@"uninitialized"]) {
+        
+        [self lt_webView:self loadingProgress:0.1];
+    }
+    else if ([readyState isEqualToString:@"loading"]) {
+        
+        [self lt_webView:self loadingProgress:0.4];
+    }
+    else if ([readyState isEqualToString:@"loaded"]) {
+        
+        [self lt_webView:self loadingProgress:0.6];
+    }
+    else if ([readyState isEqualToString:@"interactive"]) {
+        
+        [self lt_webView:self loadingProgress:0.8];
+    }
+    else if ([readyState isEqualToString:@"complete"]){
+        
+        [self lt_webView:self loadingProgress:1.0];
+    }
+    
+    if (loadingCount>0) {
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self checkDocumentReadyState];
+        });
+    }
+}
 #pragma mark UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     NSLog(@"webViewDidStartLoad");
+   
+    loadingCount++;
+    if (loadingCount == 1) {
+        
+        [self startLoading];
+    }
+    
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
     [self lt_webViewDidStartLoad:webView];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     NSLog(@"webViewDidFinishLoad");
+    
+    loadingCount--;
+    
+    if (loadingCount == 0) {
+        
+        [self endLoading];
+    }
+    
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     // 禁用用户选择
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
@@ -364,6 +487,13 @@
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     
+    loadingCount--;
+    
+    if (loadingCount == 0) {
+        
+        [self endLoading];
+    }
+    
     [self lt_webView:webView didFailLoadWithError:error];
 }
 
@@ -373,7 +503,7 @@
  */
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
-    NSLog(@"决定是否允许=%@",navigationAction.request);
+    //NSLog(@"决定是否允许=%@",navigationAction.request);
     BOOL allow = [self lt_webView:webView
        shouldStartLoadWithRequest:navigationAction.request
                    navigationType:(NSInteger)navigationAction.navigationType];

@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'B03B4A872AEA0AB756AE2D4E9BDBA5E6'
+               BlueprintIdentifier = '474225CA8E8E4605932715E262FA6204'
                BlueprintName = 'LTWebView-LTWebView'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LTWebView.bundle'>

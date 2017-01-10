@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1A99EFB7DAB15BBD87B04578 /* libPods-LTWebView_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4E41182E64052694D39B188 /* libPods-LTWebView_Example.a */; };
+		57099A6282354AFA2663248C /* libPods-LTWebView_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8E43DA472CF866FA78641 /* libPods-LTWebView_Tests.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -20,8 +22,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		729598A4CD02FE20C1A92BF9 /* Pods_LTWebView_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6D1DDAA222F05CC7A77866E /* Pods_LTWebView_Tests.framework */; };
-		F7F474868152B74F61CE1244 /* Pods_LTWebView_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9056D9888AE5F0C38EE3818A /* Pods_LTWebView_Example.framework */; };
+		6361883F1E24E8B60068842C /* LTWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6361883E1E24E8B60068842C /* LTWebViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,11 +59,13 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		60F8E43DA472CF866FA78641 /* libPods-LTWebView_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTWebView_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6361883D1E24E8B60068842C /* LTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTWebViewController.h; sourceTree = "<group>"; };
+		6361883E1E24E8B60068842C /* LTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTWebViewController.m; sourceTree = "<group>"; };
 		74B2F3B26815553589741CA5 /* LTWebView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTWebView.podspec; path = ../LTWebView.podspec; sourceTree = "<group>"; };
-		9056D9888AE5F0C38EE3818A /* Pods_LTWebView_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTWebView_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A6D1DDAA222F05CC7A77866E /* Pods_LTWebView_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTWebView_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C1A7A04F8664CCD05D8C5FC2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CBE0E198BEA5F8613ADEAC40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D4E41182E64052694D39B188 /* libPods-LTWebView_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTWebView_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,7 +76,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				F7F474868152B74F61CE1244 /* Pods_LTWebView_Example.framework in Frameworks */,
+				1A99EFB7DAB15BBD87B04578 /* libPods-LTWebView_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,7 +87,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				729598A4CD02FE20C1A92BF9 /* Pods_LTWebView_Tests.framework in Frameworks */,
+				57099A6282354AFA2663248C /* libPods-LTWebView_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -119,8 +122,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				9056D9888AE5F0C38EE3818A /* Pods_LTWebView_Example.framework */,
-				A6D1DDAA222F05CC7A77866E /* Pods_LTWebView_Tests.framework */,
+				D4E41182E64052694D39B188 /* libPods-LTWebView_Example.a */,
+				60F8E43DA472CF866FA78641 /* libPods-LTWebView_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				6003F59D195388D20070C39A /* LYAppDelegate.m */,
 				6003F5A5195388D20070C39A /* LYViewController.h */,
 				6003F5A6195388D20070C39A /* LYViewController.m */,
+				6361883C1E24E8B60068842C /* LTWebViewController */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -179,6 +183,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		6361883C1E24E8B60068842C /* LTWebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6361883D1E24E8B60068842C /* LTWebViewController.h */,
+				6361883E1E24E8B60068842C /* LTWebViewController.m */,
+			);
+			path = LTWebViewController;
+			sourceTree = "<group>";
+		};
 		D51E1AABE48E089A258D464E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -197,12 +210,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5BF195388D20070C39A /* Build configuration list for PBXNativeTarget "LTWebView_Example" */;
 			buildPhases = (
-				3480AB006097FEF003809388 /* 📦 Check Pods Manifest.lock */,
+				3480AB006097FEF003809388 /* [CP] Check Pods Manifest.lock */,
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				FB8329E01F5CE8B3F1674DBA /* 📦 Embed Pods Frameworks */,
-				9F050ED56B5BFBA1BD92463A /* 📦 Copy Pods Resources */,
+				FB8329E01F5CE8B3F1674DBA /* [CP] Embed Pods Frameworks */,
+				9F050ED56B5BFBA1BD92463A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -217,12 +230,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6003F5C2195388D20070C39A /* Build configuration list for PBXNativeTarget "LTWebView_Tests" */;
 			buildPhases = (
-				9C4BE8142AC62A503AA5A285 /* 📦 Check Pods Manifest.lock */,
+				9C4BE8142AC62A503AA5A285 /* [CP] Check Pods Manifest.lock */,
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				6E71B5100ED588291AA3009B /* 📦 Embed Pods Frameworks */,
-				893EC067101BDA87F5C0BAF1 /* 📦 Copy Pods Resources */,
+				6E71B5100ED588291AA3009B /* [CP] Embed Pods Frameworks */,
+				893EC067101BDA87F5C0BAF1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -293,29 +306,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3480AB006097FEF003809388 /* 📦 Check Pods Manifest.lock */ = {
+		3480AB006097FEF003809388 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		6E71B5100ED588291AA3009B /* 📦 Embed Pods Frameworks */ = {
+		6E71B5100ED588291AA3009B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,14 +336,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTWebView_Tests/Pods-LTWebView_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		893EC067101BDA87F5C0BAF1 /* 📦 Copy Pods Resources */ = {
+		893EC067101BDA87F5C0BAF1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,29 +351,29 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTWebView_Tests/Pods-LTWebView_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9C4BE8142AC62A503AA5A285 /* 📦 Check Pods Manifest.lock */ = {
+		9C4BE8142AC62A503AA5A285 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		9F050ED56B5BFBA1BD92463A /* 📦 Copy Pods Resources */ = {
+		9F050ED56B5BFBA1BD92463A /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -368,14 +381,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTWebView_Example/Pods-LTWebView_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FB8329E01F5CE8B3F1674DBA /* 📦 Embed Pods Frameworks */ = {
+		FB8329E01F5CE8B3F1674DBA /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,6 +404,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* LYAppDelegate.m in Sources */,
+				6361883F1E24E8B60068842C /* LTWebViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* LYViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
