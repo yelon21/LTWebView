@@ -383,11 +383,22 @@
 
 - (void)lt_webView:(nonnull LTWebView *)webView loadingProgress:(double)progress{
     
-    if (self.estimatedProgress >= progress) {
+    if (progress<0.1) {
+        progress = 0.1;
+    }
+    if (progress==0.1) {
+        
+        if (self.estimatedProgress == 0.1) {
+            
+            return;
+        }
+    }
+    else if (self.estimatedProgress >= progress) {
+        
         return;
     }
+
     self.estimatedProgress = progress;
-    
     
     //NSLog(@"progress=%@",@(progress));
     
@@ -395,11 +406,7 @@
         
         [self.delegate ltwebView:webView loadingProgress:progress];
     }
-    
-    if (self.estimatedProgress >= 1.0) {
-        
-        self.estimatedProgress = 0.0;
-    }
+
 }
 #pragma mark UIWebView document.readyState
 - (void)startLoading{

@@ -7,7 +7,7 @@
 //
 
 #import "LYViewController.h"
-#import <LTWebView/LTWebViewController.h>
+#import "LTWebViewController.h"
 @interface LYViewController ()
 
 @end
