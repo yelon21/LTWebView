@@ -45,7 +45,7 @@
     loadingCount = 0;
     _estimatedProgress = 0.0;
     
-    Class wkClass = nil;//NSClassFromString(@"WKWebView");
+    Class wkClass = NSClassFromString(@"WKWebView");
     if (wkClass) {
         _isWKWebView = YES;
         [self initWKWebView];
