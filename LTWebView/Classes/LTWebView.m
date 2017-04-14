@@ -78,7 +78,7 @@
     if ([keyPath isEqualToString:@"estimatedProgress"]) {
         
         double progress = [change[@"new"] doubleValue];
-        [self lt_webView:self.webView loadingProgress:progress];
+        [self lt_webView:self loadingProgress:progress];
     }
 }
 
@@ -341,7 +341,7 @@
 #pragma mark LTUIWebViewDelegate
 -(void)webView:(LTUIWebView *)webView didChangedProgress:(CGFloat)progress{
 
-    [self lt_webView:webView
+    [self lt_webView:self
      loadingProgress:progress];
 }
 #pragma mark LTWebViewDelegate
