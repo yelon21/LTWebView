@@ -514,7 +514,14 @@
     BOOL allow = [self lt_webView:webView
        shouldStartLoadWithRequest:navigationAction.request
                    navigationType:(NSInteger)navigationAction.navigationType];
-    decisionHandler(allow);
+    if (allow) {
+        
+        decisionHandler(WKNavigationActionPolicyAllow);
+    }
+    else{
+        
+        decisionHandler(WKNavigationActionPolicyCancel);
+    }
 }
 
 /*! @abstract 判定在获取确定响应后是否允许导航
