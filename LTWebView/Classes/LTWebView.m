@@ -702,22 +702,6 @@
     [viewCon presentViewController:alert animated:YES completion:nil];
 }
 
-/*! @abstract 显示js input panel.
- @param webView The web view invoking the delegate method.
- @param message The message to display.
- @param defaultText The initial text to display in the text entry field.
- @param frame Information about the frame whose JavaScript initiated this call.
- @param completionHandler The completion handler to call after the text
- input panel has been dismissed. Pass the entered text if the user chose
- OK, otherwise nil.
- @discussion For user security, your app should call attention to the fact
- that a specific website controls the content in this panel. A simple forumla
- for identifying the controlling website is frame.request.URL.host.
- The panel should have two buttons, such as OK and Cancel, and a field in
- which to enter text.
- 
- If you do not implement this method, the web view will behave as if the user selected the Cancel button.
- */
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler{
     
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
