@@ -466,6 +466,7 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self lt_webViewDidStartLoad:webView];
 }
 
@@ -482,6 +483,7 @@
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
     // 禁用用户选择
     [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     [self lt_webViewDidFinishLoad:webView];
 }
 
