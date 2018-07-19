@@ -585,10 +585,33 @@
 /*! @abstract webview 需要证书校验
  @discussion If you do not implement this method, the web view will respond to the authentication challenge with the NSURLSessionAuthChallengeRejectProtectionSpace disposition.
  */
-//- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential *__nullable credential))completionHandler{
-//
-//    NSLog(@"需要证书校验");
-//}
+- (void)webView:(WKWebView *)webView didReceiveAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition disposition, NSURLCredential * _Nullable credential))completionHandler{
+    
+    if (@available(iOS 7.0, *)) {
+        
+        NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        
+        __block NSURLCredential *credential = nil;
+        
+        if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+            
+            credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+            
+            if (credential) {
+                disposition = NSURLSessionAuthChallengeUseCredential;
+            } else {
+                disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+            }
+        } else {
+            
+            disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+        }
+        
+        if (completionHandler) {
+            completionHandler(disposition, credential);
+        }
+    }
+}
 
 /*! @abstract webview 内容处理终止
  */
