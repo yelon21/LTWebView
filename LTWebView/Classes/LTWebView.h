@@ -9,10 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+#ifndef LTLog
 #ifdef DEBUG
-#define NSLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define LTLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 #else
-#define NSLog(fmt, ...) nil
+#define LTLog(...)
+#endif
 #endif
 
 @protocol LTWebViewDelegate;

@@ -170,7 +170,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     if (!url) {
         
-        NSLog(@"urlString异常=%@",urlString);
+        LTLog(@"urlString异常=%@",urlString);
         return;
     }
 
@@ -347,7 +347,7 @@
 #pragma mark LTWebViewDelegate
 - (void)lt_webViewDidStartLoad:(UIView *)webView {
     
-    NSLog(@"lt_webViewDidStartLoad");
+    LTLog(@"lt_webViewDidStartLoad");
     if ([self.delegate respondsToSelector:@selector(ltwebViewDidStartLoad:)]) {
         
         [self.delegate ltwebViewDidStartLoad:self];
@@ -355,7 +355,7 @@
 }
 
 - (void)lt_webViewDidFinishLoad:(UIView *)webView {
-    NSLog(@"lt_webViewDidFinishLoad");
+    LTLog(@"lt_webViewDidFinishLoad");
     if ([self.delegate respondsToSelector:@selector(ltwebViewDidFinishLoad:)]) {
         
         [self.delegate ltwebViewDidFinishLoad:self];
@@ -363,7 +363,7 @@
 }
 
 - (BOOL)lt_webView:(UIView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    NSLog(@"shouldStartLoadWithRequest");
+    LTLog(@"shouldStartLoadWithRequest");
     if ([self.delegate respondsToSelector:@selector(ltwebView:shouldStartLoadWithRequest:navigationType:)]) {
         
         return [self.delegate ltwebView:self
@@ -374,7 +374,7 @@
 }
 
 - (void)lt_webView:(UIView *)webView didFailLoadWithError:(nullable NSError *)error{
-    NSLog(@"didFailLoadWithError");
+    LTLog(@"didFailLoadWithError");
     if ([self.delegate respondsToSelector:@selector(ltwebView:didFailLoadWithError:)]) {
         
         [self.delegate ltwebView:self didFailLoadWithError:error];
@@ -400,7 +400,7 @@
 
     self.estimatedProgress = progress;
     
-    //NSLog(@"progress=%@",@(progress));
+    //LTLog(@"progress=%@",@(progress));
     
     if ([self.delegate respondsToSelector:@selector(ltwebView:loadingProgress:)]) {
         
@@ -424,7 +424,7 @@
 
     NSString *readyState = [self.webViewUI stringByEvaluatingJavaScriptFromString:@"document.readyState"];
     
-    NSLog(@"---------readyState=%@",readyState);
+    LTLog(@"---------readyState=%@",readyState);
     
     if ([readyState isEqualToString:@"uninitialized"]) {
         
@@ -457,7 +457,7 @@
 }
 #pragma mark UIWebViewDelegate
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidStartLoad");
+    LTLog(@"webViewDidStartLoad");
    
     loadingCount++;
     if (loadingCount == 1) {
@@ -471,7 +471,7 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    NSLog(@"webViewDidFinishLoad");
+    LTLog(@"webViewDidFinishLoad");
     
     loadingCount--;
     
@@ -512,7 +512,7 @@
  */
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler{
     
-    //NSLog(@"决定是否允许=%@",navigationAction.request);
+    //LTLog(@"决定是否允许=%@",navigationAction.request);
     BOOL allow = [self lt_webView:webView
        shouldStartLoadWithRequest:navigationAction.request
                    navigationType:(NSInteger)navigationAction.navigationType];
@@ -538,7 +538,7 @@
  */
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
     
-    NSLog(@"开始加载");
+    LTLog(@"开始加载");
     [self lt_webViewDidStartLoad:webView];
 }
 
@@ -546,14 +546,14 @@
  */
 - (void)webView:(WKWebView *)webView didReceiveServerRedirectForProvisionalNavigation:(null_unspecified WKNavigation *)navigation{
     
-    NSLog(@"接收到重定向");
+    LTLog(@"接收到重定向");
 }
 
 /*! @abstract 加载失败
  */
 - (void)webView:(WKWebView *)webView didFailProvisionalNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
     
-    NSLog(@"加载失败");
+    LTLog(@"加载失败");
     [self lt_webView:webView didFailLoadWithError:error];
 }
 
@@ -561,14 +561,14 @@
  */
 - (void)webView:(WKWebView *)webView didCommitNavigation:(null_unspecified WKNavigation *)navigation{
     
-    NSLog(@"开始接收数据");
+    LTLog(@"开始接收数据");
 }
 
 /*! @abstract 加载完成
  */
 - (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation{
     
-    NSLog(@"加载完成");
+    LTLog(@"加载完成");
     self.title = webView.title;
     
     [self lt_webViewDidFinishLoad:webView];
@@ -578,7 +578,7 @@
  */
 - (void)webView:(WKWebView *)webView didFailNavigation:(null_unspecified WKNavigation *)navigation withError:(NSError *)error{
     
-    NSLog(@"error==%@",error);
+    LTLog(@"error==%@",error);
     [self lt_webView:webView didFailLoadWithError:error];
 }
 
@@ -617,7 +617,7 @@
  */
 - (void)webViewWebContentProcessDidTerminate:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
     
-    NSLog(@"内容处理终止");
+    LTLog(@"内容处理终止");
 }
 
 #pragma mark- WKUIDelegate
@@ -645,7 +645,7 @@
  */
 - (void)webViewDidClose:(WKWebView *)webView NS_AVAILABLE(10_11, 9_0){
     
-    NSLog(@"关闭页面");
+    LTLog(@"关闭页面");
 }
 
 /*! @abstract 显示js alert
@@ -665,7 +665,7 @@
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler{
     
-    NSLog(@"message=%@",message);
+    LTLog(@"message=%@",message);
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
                                                                    message:message
                                                             preferredStyle:UIAlertControllerStyleAlert];
