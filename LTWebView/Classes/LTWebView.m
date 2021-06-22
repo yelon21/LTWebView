@@ -7,14 +7,9 @@
 //
 
 #import "LTWebView.h"
-#import "LTUIWebView.h"
 
-@interface LTWebView ()<LTUIWebViewDelegate>{
+@interface LTWebView ()
 
-    NSInteger loadingCount;
-}
-
-@property(nonatomic,strong) LTUIWebView *webViewUI;
 @property(nonatomic,strong) WKWebView *webViewWK;
 @property(nonatomic,readwrite,strong,nullable) NSString *title;
 @property(nonatomic,readwrite) double estimatedProgress;
@@ -42,27 +37,14 @@
     
     self.title = @"";
     
-    loadingCount = 0;
     _estimatedProgress = 0.0;
     
-    Class wkClass = NSClassFromString(@"WKWebView");
-    if (wkClass) {
-        _isWKWebView = YES;
-        [self initWKWebView];
-    }
-    else{
-        
-        _isWKWebView = NO;
-        [self initUIWebView];
-    }
+    [self initWKWebView];
     
-    if (_isWKWebView) {
-        
-        [self.webViewWK addObserver:self
-                         forKeyPath:@"estimatedProgress"
-                            options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial
-                            context:(__bridge void * _Nullable)(self.delegate)];
-    }
+    [self.webViewWK addObserver:self
+                     forKeyPath:@"estimatedProgress"
+                        options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionInitial
+                        context:(__bridge void * _Nullable)(self.delegate)];
 }
 
 -(void)dealloc{
@@ -86,14 +68,7 @@
     
     [super setBackgroundColor:backgroundColor];
     
-    if (self.isWKWebView) {
-        
-        self.webViewWK.backgroundColor = backgroundColor;
-    }
-    else{
-        
-        self.webViewUI.backgroundColor = backgroundColor;
-    }
+    self.webViewWK.backgroundColor = backgroundColor;
 }
 //初始化
 - (void)initWKWebView{
@@ -115,28 +90,10 @@
     self.webViewWK.scrollView.bounces = YES;
 }
 
-- (void)initUIWebView{
-    
-    self.webViewUI = [[LTUIWebView alloc]initWithFrame:self.bounds];
-    self.webViewUI.delegate = self;
-    self.webViewUI.ltDelegate = self;
-    UIView *superView = self;
-
-    [superView addSubview:self.webViewUI];
-    self.webViewUI.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    self.webViewUI.scrollView.bounces = YES;
-}
 // 成员方法
--(UIView *)webView{
+-(WKWebView *)webView{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK;
-    }
-    else{
-        
-        return self.webViewUI;
-    }
+    return self.webViewWK;
 }
 //加载
 - (void)lt_loadUrl:(NSString *)urlString{
@@ -181,168 +138,71 @@
 
 -(void)lt_loadRequest:(NSURLRequest *)request{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK loadRequest:request];
-    }
-    else {
-        
-        [self.webViewUI loadRequest:request];
-    }
+    [self.webViewWK loadRequest:request];
 }
 
 -(void)lt_loadHTMLString:(NSString *)string baseURL:(NSURL *)baseURL{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK loadHTMLString:string baseURL:baseURL];
-    }
-    else {
-        
-        [self.webViewUI loadHTMLString:string baseURL:baseURL];
-    }
+    [self.webViewWK loadHTMLString:string baseURL:baseURL];
 }
 
 -(void)lt_loadData:(NSData *)data MIMEType:(NSString *)MIMEType textEncodingName:(NSString *)textEncodingName baseURL:(NSURL *)baseURL{
     
-    if (self.isWKWebView) {
+    if ([self.webViewWK respondsToSelector:@selector(loadData:MIMEType:characterEncodingName:baseURL:)]) {//9.0
         
-        if ([self.webViewWK respondsToSelector:@selector(loadData:MIMEType:characterEncodingName:baseURL:)]) {//9.0
-            
-            [self.webViewWK loadData:data MIMEType:MIMEType characterEncodingName:textEncodingName baseURL:baseURL];
-        }
-    }
-    else {
-        
-        [self.webViewUI loadData:data MIMEType:MIMEType textEncodingName:textEncodingName baseURL:baseURL];
+        [self.webViewWK loadData:data MIMEType:MIMEType characterEncodingName:textEncodingName baseURL:baseURL];
     }
 }
 //属性 readonly
 -(NSURL *)URL{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK.URL;
-    }
-    else{
-        
-        return self.webViewUI.request.URL;
-    }
+    return self.webViewWK.URL;
 }
+
 -(UIScrollView *)scrollView{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK.scrollView;
-    }
-    else{
-        
-        return self.webViewUI.scrollView;
-    }
+    return self.webViewWK.scrollView;
 }
 
 -(BOOL)canGoBack{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK.canGoBack;
-    }
-    else{
-        
-        return self.webViewUI.canGoBack;
-    }
+    return self.webViewWK.canGoBack;
 }
 
 -(BOOL)canGoForward{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK.canGoForward;
-    }
-    else{
-        
-        return self.webViewUI.canGoForward;
-    }
+    return self.webViewWK.canGoForward;
 }
 
 -(BOOL)isLoading{
     
-    if (self.isWKWebView) {
-        
-        return self.webViewWK.isLoading;
-    }
-    else{
-        
-        return self.webViewUI.isLoading;
-    }
+    return self.webViewWK.isLoading;
 }
 
 - (void)lt_reload{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK reloadFromOrigin];
-    }
-    else{
-        
-        [self.webViewUI reload];
-    }
+    [self.webViewWK reloadFromOrigin];
 }
+
 - (void)lt_stopLoading{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK stopLoading];
-    }
-    else{
-        
-        [self.webViewUI stopLoading];
-    }
+    [self.webViewWK stopLoading];
 }
 
 - (void)lt_goBack{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK goBack];
-    }
-    else{
-        
-        [self.webViewUI goBack];
-    }
+    [self.webViewWK goBack];
 }
+
 - (void)lt_goForward{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK goForward];
-    }
-    else{
-        
-        [self.webViewUI goForward];
-    }
+    [self.webViewWK goForward];
 }
 //
 -(void)lt_evaluateJavaScript:(NSString *)javaScriptString completionHandler:(void (^)(id _Nullable data, NSError * _Nullable))completionHandler{
     
-    if (self.isWKWebView) {
-        
-        [self.webViewWK evaluateJavaScript:javaScriptString
-                         completionHandler:completionHandler];
-    }
-    else{
-        
-        NSString *result = [self.webViewUI stringByEvaluatingJavaScriptFromString:javaScriptString];
-        if (completionHandler) {
-            completionHandler(result,nil);
-        }
-    }
-}
-#pragma mark LTUIWebViewDelegate
--(void)webView:(LTUIWebView *)webView didChangedProgress:(CGFloat)progress{
-
-    [self lt_webView:self
-     loadingProgress:progress];
+    [self.webViewWK evaluateJavaScript:javaScriptString
+                     completionHandler:completionHandler];
 }
 #pragma mark LTWebViewDelegate
 - (void)lt_webViewDidStartLoad:(UIView *)webView {
@@ -412,98 +272,11 @@
 - (void)startLoading{
 
     [self lt_webView:self loadingProgress:0.1];
-   // [self checkDocumentReadyState];
 }
 
 - (void)endLoading{
     
     [self lt_webView:self loadingProgress:1.0];
-}
-
-- (void)checkDocumentReadyState{
-
-    NSString *readyState = [self.webViewUI stringByEvaluatingJavaScriptFromString:@"document.readyState"];
-    
-    LTLog(@"---------readyState=%@",readyState);
-    
-    if ([readyState isEqualToString:@"uninitialized"]) {
-        
-        [self lt_webView:self loadingProgress:0.1];
-    }
-    else if ([readyState isEqualToString:@"loading"]) {
-        
-        [self lt_webView:self loadingProgress:0.4];
-    }
-    else if ([readyState isEqualToString:@"loaded"]) {
-        
-        [self lt_webView:self loadingProgress:0.6];
-    }
-    else if ([readyState isEqualToString:@"interactive"]) {
-        
-        [self lt_webView:self loadingProgress:0.8];
-    }
-    else if ([readyState isEqualToString:@"complete"]){
-        
-        [self lt_webView:self loadingProgress:1.0];
-    }
-    
-    if (loadingCount>0) {
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            [self checkDocumentReadyState];
-        });
-    }
-}
-#pragma mark UIWebViewDelegate
-- (void)webViewDidStartLoad:(UIWebView *)webView {
-    LTLog(@"webViewDidStartLoad");
-   
-    loadingCount++;
-    if (loadingCount == 1) {
-        
-        [self startLoading];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self lt_webViewDidStartLoad:webView];
-}
-
-- (void)webViewDidFinishLoad:(UIWebView *)webView {
-    LTLog(@"webViewDidFinishLoad");
-    
-    loadingCount--;
-    
-    if (loadingCount == 0) {
-        
-        [self endLoading];
-    }
-    
-    self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
-    // 禁用用户选择
-    [[NSUserDefaults standardUserDefaults] setInteger:0 forKey:@"WebKitCacheModelPreferenceKey"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [self lt_webViewDidFinishLoad:webView];
-}
-
-- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-    
-    return [self lt_webView:webView
- shouldStartLoadWithRequest:request
-             navigationType:navigationType];
-}
-
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
-    
-    loadingCount--;
-    
-    if (loadingCount == 0) {
-        
-        [self endLoading];
-    }
-    
-    [self lt_webView:webView didFailLoadWithError:error];
 }
 
 #pragma mark- WKNavigationDelegate

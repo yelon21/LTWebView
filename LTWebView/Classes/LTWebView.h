@@ -21,8 +21,7 @@
 
 @interface LTWebView : UIView<UIWebViewDelegate,WKNavigationDelegate,WKUIDelegate>
 
-@property(nonatomic,assign,readonly) BOOL isWKWebView;
-@property(nonatomic,readonly,assign,nullable) UIView *webView;
+@property(nonatomic,readonly,assign,nullable) WKWebView *webView;
 @property(nonatomic,readonly,strong,nullable) NSString *title;
 @property(nonatomic,assign,nullable) id<LTWebViewDelegate>delegate;
 
