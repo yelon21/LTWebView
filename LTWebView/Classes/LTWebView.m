@@ -115,14 +115,7 @@
         urlString = @"";
     }
     
-    if ([urlString respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
-        
-        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
-    }
-    else{
-        
-        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    }
+    urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURL *url = [NSURL URLWithString:urlString];
     if (!url) {
@@ -222,7 +215,9 @@
     }
 }
 
-- (BOOL)lt_webView:(UIView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+- (BOOL)lt_webView:(UIView *)webView
+shouldStartLoadWithRequest:(NSURLRequest *)request
+    navigationType:(WKNavigationType)navigationType{
     LTLog(@"shouldStartLoadWithRequest");
     if ([self.delegate respondsToSelector:@selector(ltwebView:shouldStartLoadWithRequest:navigationType:)]) {
         
@@ -233,7 +228,8 @@
     return YES;
 }
 
-- (void)lt_webView:(UIView *)webView didFailLoadWithError:(nullable NSError *)error{
+- (void)lt_webView:(UIView *)webView
+didFailLoadWithError:(nullable NSError *)error{
     LTLog(@"didFailLoadWithError");
     if ([self.delegate respondsToSelector:@selector(ltwebView:didFailLoadWithError:)]) {
         
@@ -241,7 +237,8 @@
     }
 }
 
-- (void)lt_webView:(nonnull LTWebView *)webView loadingProgress:(double)progress{
+- (void)lt_webView:(nonnull LTWebView *)webView
+   loadingProgress:(double)progress{
     
     if (progress<0.1) {
         progress = 0.1;
@@ -268,16 +265,6 @@
     }
 
 }
-#pragma mark UIWebView document.readyState
-- (void)startLoading{
-
-    [self lt_webView:self loadingProgress:0.1];
-}
-
-- (void)endLoading{
-    
-    [self lt_webView:self loadingProgress:1.0];
-}
 
 #pragma mark- WKNavigationDelegate
 /*! @abstract 决定是否允许或者取消一个navigationAction
@@ -288,7 +275,7 @@
     //LTLog(@"决定是否允许=%@",navigationAction.request);
     BOOL allow = [self lt_webView:webView
        shouldStartLoadWithRequest:navigationAction.request
-                   navigationType:(NSInteger)navigationAction.navigationType];
+                   navigationType:navigationAction.navigationType];
     if (allow) {
         
         decisionHandler(WKNavigationActionPolicyAllow);

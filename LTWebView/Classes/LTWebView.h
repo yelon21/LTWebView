@@ -19,7 +19,7 @@
 
 @protocol LTWebViewDelegate;
 
-@interface LTWebView : UIView<UIWebViewDelegate,WKNavigationDelegate,WKUIDelegate>
+@interface LTWebView : UIView<WKNavigationDelegate,WKUIDelegate>
 
 @property(nonatomic,readonly,assign,nullable) WKWebView *webView;
 @property(nonatomic,readonly,strong,nullable) NSString *title;
@@ -58,7 +58,9 @@
 @protocol LTWebViewDelegate <NSObject>
 
 @optional
-- (BOOL)ltwebView:(nonnull LTWebView *)webView shouldStartLoadWithRequest:(nonnull NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType;
+- (BOOL)ltwebView:(nonnull LTWebView *)webView
+shouldStartLoadWithRequest:(nonnull NSURLRequest *)request
+   navigationType:(WKNavigationType)navigationType;
 - (void)ltwebViewDidStartLoad:(nonnull LTWebView *)webView;
 - (void)ltwebViewDidFinishLoad:(nonnull LTWebView *)webView;
 - (void)ltwebView:(nonnull LTWebView *)webView didFailLoadWithError:(nullable NSError *)error;
