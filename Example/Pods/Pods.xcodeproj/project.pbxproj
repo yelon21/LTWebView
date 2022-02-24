@@ -435,6 +435,28 @@
 			};
 			name = Debug;
 		};
+		17CEED5830D0B12C0A4EA225E5E14337 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9D53A6582F76E1D9DB387054A1A3AA5 /* LTWebView.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LTWebView;
+				PRODUCT_NAME = LTWebView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		25AD9454612BF454A1E3DC4CD4FA8C6D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -501,29 +523,6 @@
 			};
 			name = Debug;
 		};
-		3E07A7E386E9251195D163BF7DE2C795 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 479340EA43CE4B9B4E9A8351B422590A /* LTWebView.release.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LTWebView;
-				PRODUCT_NAME = LTWebView;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		4E0F34ECCBDEFD2B81E9ABE7FC01973D /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F28D02365A6CB6922C971F5FED4647A /* Pods-LTWebView_Tests.release.xcconfig */;
@@ -566,14 +565,14 @@
 			};
 			name = Release;
 		};
-		9A1489152A813B25CD14E9FF2C72E23B /* Debug */ = {
+		75EBAC11ED71E1A505D22DCF91486230 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E9D53A6582F76E1D9DB387054A1A3AA5 /* LTWebView.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LTWebView";
 				IBSC_MODULE = LTWebView;
 				INFOPLIST_FILE = "Target Support Files/LTWebView/ResourceBundle-LTWebView-LTWebView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = LTWebView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -582,36 +581,14 @@
 			};
 			name = Debug;
 		};
-		BB7CBC3FEE56FCA06DE6076E59B8C6F1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E9D53A6582F76E1D9DB387054A1A3AA5 /* LTWebView.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = LTWebView;
-				PRODUCT_NAME = LTWebView;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		CA1ACF935F345727E089019EDB772B5E /* Release */ = {
+		7A7862346CA17619A9FF2A55C9D6125A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 479340EA43CE4B9B4E9A8351B422590A /* LTWebView.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/LTWebView";
 				IBSC_MODULE = LTWebView;
 				INFOPLIST_FILE = "Target Support Files/LTWebView/ResourceBundle-LTWebView-LTWebView-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = LTWebView;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -702,6 +679,29 @@
 			};
 			name = Debug;
 		};
+		F3DAA4AA103FC3143F8ADBF703B8B4DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 479340EA43CE4B9B4E9A8351B422590A /* LTWebView.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/LTWebView/LTWebView-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = LTWebView;
+				PRODUCT_NAME = LTWebView;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -726,8 +726,8 @@
 		99B0FCF3AAA39638D7426D5CF5D61636 /* Build configuration list for PBXNativeTarget "LTWebView-LTWebView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9A1489152A813B25CD14E9FF2C72E23B /* Debug */,
-				CA1ACF935F345727E089019EDB772B5E /* Release */,
+				75EBAC11ED71E1A505D22DCF91486230 /* Debug */,
+				7A7862346CA17619A9FF2A55C9D6125A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -744,8 +744,8 @@
 		E7DAE1AF29236E2775A33C688625FD6B /* Build configuration list for PBXNativeTarget "LTWebView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				BB7CBC3FEE56FCA06DE6076E59B8C6F1 /* Debug */,
-				3E07A7E386E9251195D163BF7DE2C795 /* Release */,
+				17CEED5830D0B12C0A4EA225E5E14337 /* Debug */,
+				F3DAA4AA103FC3143F8ADBF703B8B4DA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

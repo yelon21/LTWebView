@@ -62,7 +62,7 @@
 		60F8E43DA472CF866FA78641 /* libPods-LTWebView_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTWebView_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6361883D1E24E8B60068842C /* LTWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTWebViewController.h; sourceTree = "<group>"; };
 		6361883E1E24E8B60068842C /* LTWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTWebViewController.m; sourceTree = "<group>"; };
-		74B2F3B26815553589741CA5 /* LTWebView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTWebView.podspec; path = ../LTWebView.podspec; sourceTree = "<group>"; };
+		74B2F3B26815553589741CA5 /* LTWebView.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTWebView.podspec; path = ../LTWebView.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C1A7A04F8664CCD05D8C5FC2 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		CBE0E198BEA5F8613ADEAC40 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		D4E41182E64052694D39B188 /* libPods-LTWebView_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTWebView_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -255,7 +255,7 @@
 				ORGANIZATIONNAME = yelon21;
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = U7DFNWQBUU;
+						DevelopmentTeam = SEX9UQR699;
 						ProvisioningStyle = Manual;
 					};
 					6003F5AD195388D20070C39A = {
@@ -489,7 +489,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				DEVELOPMENT_TEAM = U7DFNWQBUU;
+				DEVELOPMENT_TEAM = SEX9UQR699;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LTWebView/LTWebView-Prefix.pch";
 				INFOPLIST_FILE = "LTWebView/LTWebView-Info.plist";
@@ -498,7 +498,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "913752e3-c122-4923-b1ae-a55e9dacc34b";
-				PROVISIONING_PROFILE_SPECIFIER = debug_any;
+				PROVISIONING_PROFILE_SPECIFIER = debug_any_fl;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
